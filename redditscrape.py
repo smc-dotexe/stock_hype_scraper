@@ -2,10 +2,8 @@ import praw
 import json
 import re
 import os
-from dotenv import load_dotenv
-
 import yfinance as yf
-# import yahoo_fin.stock_info as si
+from dotenv import load_dotenv
 
 load_dotenv(override=True)
 
@@ -26,7 +24,6 @@ def ticker_filter(comment):
     if (comment_ticker_search):
         extract_ticker = re.findall(pattern, comment.body)
         for ticker in extract_ticker:
-            # ticker_data = si.get_data(ticker)
             try:
                 print(ticker)
                 print(comment.body)
@@ -39,7 +36,6 @@ def ticker_filter(comment):
 
 
 for comment in subred.stream.comments(skip_existing=True):
-    # ticker_filter(comment)
     ticker_filter(comment)
     
 
